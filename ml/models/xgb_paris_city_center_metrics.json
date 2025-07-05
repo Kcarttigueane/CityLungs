@@ -1,0 +1,50 @@
+{
+  "mae": 1.0547377761362409,
+  "rmse": 1.659955364888585,
+  "r2": 0.9824363583656613,
+  "mape": 4.631696865963644,
+  "samples": 303,
+  "timestamp": "2025-07-05T13:20:54.711575",
+  "top_features": [
+    {
+      "feature": "pm10",
+      "importance": 0.712175726890564
+    },
+    {
+      "feature": "traffic_level",
+      "importance": 0.0701497346162796
+    },
+    {
+      "feature": "pm25_rolling_min_6h",
+      "importance": 0.058886442333459854
+    },
+    {
+      "feature": "pm25_change_1h",
+      "importance": 0.03986405208706856
+    },
+    {
+      "feature": "pm25_rolling_max_6h",
+      "importance": 0.024391543120145798
+    },
+    {
+      "feature": "co",
+      "importance": 0.02102949284017086
+    },
+    {
+      "feature": "pm25_rolling_mean_3h",
+      "importance": 0.018851323053240776
+    },
+    {
+      "feature": "no2",
+      "importance": 0.012392080388963223
+    },
+    {
+      "feature": "pm25_change_3h",
+      "importance": 0.004947078879922628
+    },
+    {
+      "feature": "hour",
+      "importance": 0.004872973542660475
+    }
+  ]
+}
