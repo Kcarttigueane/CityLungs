@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Predictions</title>
+</head>
+<body>
+    <h1>Test Predictions API</h1>
+    <button onclick="testPredictions()">Load Predictions</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function testPredictions() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/predictions/generate/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        location_name: 'Paris City Center',
+                        hours_ahead: 6
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Transform data like the frontend does
+                const transformed = data.map(pred => ({
+                    pm25: parseFloat(pred.predicted_pm25),
+                    confidence: parseFloat(pred.confidence_score),
+                    model: pred.model_name,
+                    timestamp: pred.target_timestamp
+                }));
+                
+                resultDiv.textContent = JSON.stringify(transformed, null, 2);
+                
+                // Test grouping
+                const models = ['random_forest', 'xgboost', 'ensemble'];
+                models.forEach(model => {
+                    const filtered = transformed.filter(p => p.model === model);
+                    console.log(`${model}: ${filtered.length} predictions`);
+                });
+                
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>
